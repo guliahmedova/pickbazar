@@ -1,0 +1,15 @@
+.btn_default {
+    background-color: #009e7f;
+    color: white;
+    padding: 0px 15px;
+    font-size: 15px;
+    font-weight: 700;
+    height: 38px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    &:hover {
+        background-color: rgb(1, 147, 118);
+        transition: 0.4s all;
+    }
+}

@@ -1,0 +1,46 @@
+/*VARIABLES*/
+$main_color: #009e7f;
+/////////////////////////////////////////////////////////////
+
+/*RESET*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0%;
+    padding: 0;
+    font: inherit;
+}
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+html:focus-within {
+    scroll-behavior: smooth;
+}
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    background-color: #fafafa;
+}
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+img,
+svg,
+picture {
+    max-width: 100%;
+    display: block;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
