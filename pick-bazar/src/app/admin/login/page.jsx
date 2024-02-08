@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div className={style.login_layout}>
       <form className={style.login_form}>
-        
+
         <div className={style.header}>
           <span className={style.logo_box}>
             <Image src='/logo.svg' fill alt='logo' />
@@ -32,4 +32,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

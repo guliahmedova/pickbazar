@@ -1,13 +1,21 @@
-import Categories from "@/components/home/categories"
-import Hero from "@/components/home/hero"
+"use client"
+import Categories from "@/components/home/categories";
+import Hero from "@/components/home/hero";
+import Navbar from "@/components/navbar";
+import RegisterModal from "@/components/registermodal";
+import { useState } from "react";
 
 const Home = () => {
-  return (
-    <>
-      <Hero />
-      <Categories />
-    </>
-  )
-}
+    const [openModal, setOpenModal] = useState(true);
 
-export default Home
+    return (
+        <>
+            <Navbar setOpenModal={setOpenModal} />
+            <Hero />
+            <RegisterModal openModal = {openModal} setOpenModal={setOpenModal} />
+            <Categories />
+        </>
+    )
+};
+
+export default Home;

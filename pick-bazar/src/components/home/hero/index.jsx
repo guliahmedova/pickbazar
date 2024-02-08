@@ -1,6 +1,6 @@
 import styles from "./hero.module.scss";
 import Image from 'next/image';
-import utils from "@/app/utils.module.scss";
+import utils from "@/styles/utils.module.scss";
 
 const Hero = () => {
     return (

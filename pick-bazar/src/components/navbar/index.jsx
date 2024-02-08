@@ -1,9 +1,9 @@
 import styles from './navbar.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
-import utils from "@/app/utils.module.scss";
+import utils from "@/styles/utils.module.scss";
 
-const Navbar = () => {
+const Navbar = ({ setOpenModal }) => {
     return (
         <header className={styles.header}>
             <div className={styles.header_container}>
@@ -49,7 +49,9 @@ const Navbar = () => {
                                 <span>English</span>
                             </div>
                         </div>
-                        <button className={`${utils.btn_default} ${styles.show_btn}`}>Join</button>
+                        <button className={`${utils.btn_default} ${styles.show_btn}`} onClick={() => {
+                            if (setOpenModal) setOpenModal(true)
+                        }}>Join</button>
                         <span className={styles.search_btn}><Image src="/search.svg" alt="search_icon" fill /></span>
                     </div>
                 </div>
