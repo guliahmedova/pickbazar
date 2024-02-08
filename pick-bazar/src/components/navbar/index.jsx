@@ -1,9 +1,12 @@
+"use client";
 import styles from './navbar.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import utils from "@/styles/utils.module.scss";
 
 const Navbar = ({ setOpenModal }) => {
+    const token = localStorage.getItem("access_token");
+
     return (
         <header className={styles.header}>
             <div className={styles.header_container}>
@@ -49,9 +52,12 @@ const Navbar = ({ setOpenModal }) => {
                                 <span>English</span>
                             </div>
                         </div>
-                        <button className={`${utils.btn_default} ${styles.show_btn}`} onClick={() => {
-                            if (setOpenModal) setOpenModal(true)
-                        }}>Join</button>
+                        {token.length > 0? (
+                            <img src='/avatar.png' className={styles.avatar} alt='avatar'/>
+                        ) : (
+                              <button className={`${utils.btn_default} ${styles.show_btn}`} 
+                              onClick={() => {if (setOpenModal) setOpenModal(true)}}>Join</button>
+                        )}
                         <span className={styles.search_btn}><Image src="/search.svg" alt="search_icon" fill /></span>
                     </div>
                 </div>

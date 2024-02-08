@@ -1,15 +1,13 @@
-"use client"
+"use client";
 import utils from "@/styles/utils.module.scss";
 import styles from "./loginform.module.scss";
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import { userLogin } from "@/redux/features/loginSlice";
-import { useRouter } from 'next/navigation'
 
 const LoginForm = ({setOpenModal}) => {
     const [formKey, setFormKey] = useState("login");
-    const router = useRouter()
-
+   
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -33,7 +31,6 @@ const LoginForm = ({setOpenModal}) => {
                 password: formData.password
             })).then((confirm) => {
                 if (confirm.meta.requestStatus === "fulfilled") {
-                    router.push("/");
                     setOpenModal(false);
                 };
             });

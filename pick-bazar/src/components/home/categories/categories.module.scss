@@ -36,12 +36,14 @@
                 }
                 .sidebar_item_icon {
                     filter: grayscale(1);
-                    width: 1.5rem;
-                    height: 1.5rem;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+                    svg {
+                        width: 1.5rem !important;
+                        height: 1.5rem !important;
+                    }
                 }
                 &:hover {
                     transition: 0.4s all;
@@ -53,6 +55,17 @@
                         color: #009e7f;
                         transition: 0.4s all;
                     }
+                }
+            }
+
+            .sidebar_item_active{
+                color: #009e7f;
+                .sidebar_item_icon {
+                    filter: grayscale(0);
+                }
+                .item_text {
+                    color: #009e7f;
+                    transition: 0.4s all;
                 }
             }
         }
