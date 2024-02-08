@@ -1,31 +1,72 @@
-import styles from "./loginform.module.scss";
+"use client"
 import utils from "@/styles/utils.module.scss";
+import styles from "./loginform.module.scss";
+import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { userLogin } from "@/redux/features/loginSlice";
+import { useRouter } from 'next/navigation'
 
-const LoginForm = () => {
+const LoginForm = ({setOpenModal}) => {
+    const [formKey, setFormKey] = useState("login");
+    const router = useRouter()
+
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (formKey === 'login' && formData.password.length > 0 && formData.username.length > 0) {
+            dispatch(userLogin({
+                username: formData.username,
+                password: formData.password
+            })).then((confirm) => {
+                if (confirm.meta.requestStatus === "fulfilled") {
+                    router.push("/");
+                    setOpenModal(false);
+                };
+            });
+        }
+    };
+
     return (
         <div className={utils.form_layout_register}>
 
             <div className={utils.register_form_header}>
-                <h1 className={utils.regis_title}>Welcome Back</h1>
-                <p className={utils.regis_desc}>Login with your email & password</p>
+                <h1 className={utils.regis_title}>
+                    {formKey === "signup" ? "Sign Up" : "Welcome Back"}
+                </h1>
+                <p className={utils.regis_desc}>
+                    {formKey === "signup" ? "By signing up, you agree to Pickbazar's" : "Login with your email & password"}
+                </p>
             </div>
 
 
             <form className={utils.register_form_body}>
                 <div className={utils.register_form_input}>
-                    <input type="email" placeholder="demo@demo.com" />
+                    <input type="username" name="username" value={formData.username} onChange={(e) => handleChange(e)} placeholder="joe123" />
                 </div>
                 <div className={utils.register_form_input}>
-                    <input type="password" />
+                    <input type="password" name="password" value={formData.password} onChange={(e) => handleChange(e)} />
                 </div>
-                <button className={`${utils.btn_default} ${styles.register_btn}`}>Continue</button>
+                <button className={`${utils.btn_default} ${styles.register_btn}`} onClick={(e) => handleSubmit(e)}>Continue</button>
             </form>
 
 
             <div className={styles.or_line}>
                 <span>or</span>
             </div>
-
 
             <div className={utils.btns}>
                 <button className={utils.fc_btn}>
@@ -38,10 +79,19 @@ const LoginForm = () => {
                 </button>
             </div>
 
+            {
+                formKey === "login" ? (
 
-            <div className={utils.form_info}>
-                Don't have any account? <button className={utils.link_btn}>Sign Up</button>
-            </div>
+                    <div className={utils.form_info}>
+                        Don't have any account? <button className={utils.link_btn} onClick={() => setFormKey("signup")}>Sign Up</button>
+                    </div>
+                ) : (
+
+                    <div className={utils.form_info}>
+                        Already have an account? <button className={utils.link_btn} onClick={() => setFormKey("login")}>Login</button>
+                    </div>
+                )
+            }
 
         </div>
     )
